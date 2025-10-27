@@ -10,7 +10,7 @@ Each data structure is implemented from scratch, following standard C89/C99 prac
 
 Includes the following data structures:
 
-- Linked List (Singly and Doubly Linked)
+- Linked List (Singly, Doubly and Sorted)
 - Stack
 - Queue
 - Heap (Priority Queue)
