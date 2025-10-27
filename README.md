@@ -3,6 +3,7 @@
 
 This repository contains implementations of fundamental data structures written in C language, focusing on clarity, efficiency, and reusability.
 Each data structure is implemented from scratch, following standard C89/C99 practices, and includes example usage to demonstrate basic operations.
+
 ---
 
 ## 🧩 Implementations
