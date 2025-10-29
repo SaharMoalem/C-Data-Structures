@@ -212,6 +212,7 @@ double HTGetSD(const hash_table_t* hash_table)
     assert(hash_table);
 
     average = HTLoadFactor(hash_table);
+    
     for( ; i < hash_table->n_buckets; ++i)
     {
         total_curr = DLListSize(hash_table->buckets[i]) - average;

@@ -19,10 +19,17 @@ struct dvector {
 dvector_t* DvectorCreate(size_t capacity, size_t element_size)
 {
     dvector_t* p_dvector = (dvector_t*)malloc(sizeof(dvector_t));
+
+    if(!p_dvector)
+    {
+        return NULL;
+    }
+
     p_dvector->array = malloc(capacity * element_size);
 
-    if (NULL == p_dvector || NULL == p_dvector->array)
+    if (!p_dvector->array)
     {
+        free(p_dvector);
         return NULL;
     }
 
@@ -41,14 +48,14 @@ void DvectorDestroy(dvector_t* dvector)
 
 size_t DvectorCapacity(const dvector_t* dvector)
 {
-    assert(NULL != dvector);
+    assert(dvector);
     
     return dvector->capacity;
 }
 
 size_t DvectorSize(const dvector_t* dvector)
 {
-    assert(NULL != dvector);
+    assert(dvector);
     
     return dvector->size;
 }
@@ -57,7 +64,7 @@ void DvectorSetElement(dvector_t* dvector, size_t index, const void* value)
 {
     unsigned char* p_array = (unsigned char*)(dvector -> array);
     
-    assert(NULL != dvector);
+    assert(dvector);
     assert(index < dvector->size);
 
     memcpy(p_array + (index * dvector->element_size), value,
@@ -68,7 +75,7 @@ void DvectorGetElement(const dvector_t* dvector, size_t index, void* dest)
 {
     unsigned char* p_array = (unsigned char*)(dvector->array);
     
-    assert(NULL != dvector);
+    assert(dvector);
     assert(index < dvector -> size);
 
     memcpy(dest, p_array + (index * dvector->element_size),
@@ -79,7 +86,7 @@ int DvectorPushBack(dvector_t* dvector, const void* element)
 {
     unsigned char* p_array;
     
-    assert(NULL != dvector);
+    assert(dvector);
 
     if (dvector->size == dvector->capacity)
     {
@@ -99,7 +106,7 @@ int DvectorPushBack(dvector_t* dvector, const void* element)
 
 int DvectorPopBack(dvector_t* dvector)
 {
-    assert(NULL != dvector);
+    assert(dvector);
 
     if (!dvector->size)
     {
@@ -118,7 +125,7 @@ int DvectorPopBack(dvector_t* dvector)
 
 int DvectorResize(dvector_t* dvector, size_t new_capacity)
 {    
-    assert(NULL != dvector);
+    assert(dvector);
 
     dvector->array = realloc(dvector->array, new_capacity * dvector->element_size + 1);
 
